@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 class MemoryMemberRepositoryTest {
 
     MemoryMemberRepository repository = new MemoryMemberRepository();
-    @AfterEach  //각각의 테스트가 끝나고 바로 각각 실행시켜주는 에노테이션
+    @AfterEach  //각각의 테스트
     public void afterEach(){     //모두 같이 test 를 하면 순서에 의존하지 않기때문에 객체를 새로생성해줘도 겹칠수있다 그래서 clear 해줘야함
         repository.clearStore();
     }
