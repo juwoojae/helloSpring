@@ -6,8 +6,8 @@ import java.util.*;
 
 //MemberRepository 의 구현체
 public class MemoryMemberRepository implements Memberrepository {
-    private static Map<Long,Member> store =new HashMap<>();
-    private static long sequence =0L;
+    private static Map<Long, Member> store = new HashMap<>();
+    private static long sequence = 0L;
 
     @Override
     public Member save(Member member) {   //멤버를 store에 저장하는 메서드
@@ -17,12 +17,12 @@ public class MemoryMemberRepository implements Memberrepository {
     }
 
     @Override
-    public Optional<Member> findById(Long id) {
+    public Optional<Member> findById(Long id) {    //id 로 Member 객체 찾기
         return Optional.ofNullable(store.get(id));
     }
 
     @Override
-    public Optional<Member> findByName(String name) {
+    public Optional<Member> findByName(String name) {    //Name 으로 Member 객체 찾기
         return store.values().stream()
                 .filter(member -> member.getName().equals(name))
                 .findAny();
@@ -31,5 +31,9 @@ public class MemoryMemberRepository implements Memberrepository {
     @Override
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
+    }
+
+    public void clearStore() {
+        store.clear();
     }
 }
