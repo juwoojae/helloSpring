@@ -22,12 +22,6 @@ public class  HelloController {
     }
 
     @GetMapping("hello-string")
-    @ResponseBody//응답 바디부에 직접 넣어주겠다? 확인해보면 HTML부가 없다
-    public String helloString(@RequestParam("name") String name) {
-        return "hello" + name;
-    }
-
-    @GetMapping("hello-string")
     @ResponseBody
     public Hello helloApi(@RequestParam("name") String name) {
         Hello hello = new Hello();

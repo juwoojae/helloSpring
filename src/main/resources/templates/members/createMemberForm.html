@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div>
+    <!--form 은 값을 입력할수있는 html 태그 : input에 입력을 받으면 URL에 post방식으로 넘겨 온다-->
+    <form action="/members/new" method="post">
+        <div class="form-group">
+            <label for="name">이름</label>
+            <!--input 은 옆에 입력을 받을수있는 박스이다 text를 입력을 받되 {name,id} 이렇게 입력을 받는다-->
+            <input type="text" id ="name" name="name" placeholder="이름을 입력하세요">
+        </div>
+        <button type="submit">등록</button>
+    </form>
+
+</div>
+</body>
+</html>

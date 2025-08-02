@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class ="container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--th는 타임리프 문법이다 each 는 약간 이터레이터 문법같은거-->
+            <tr th:each="member : ${members}">
+                <td th:text="${member.id}"></td>
+                <!--.name , .id 하면 getter 가 내부에서 작동한다-->
+                <td th:text="${member.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+</body>
+</html>
