@@ -4,12 +4,13 @@ package hello.helloSpring.sevice;
 import hello.helloSpring.domain.Member;
 import hello.helloSpring.repository.Memberrepository;
 import hello.helloSpring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Optional;
-
+import java.util.Optional; //비즈니스 로직을 만들고
 public class MemberService {
     private final Memberrepository memberrepository ;
+
     public MemberService(Memberrepository memberrepository){
         this.memberrepository=memberrepository;
     }  //생성자로서 넣어주기

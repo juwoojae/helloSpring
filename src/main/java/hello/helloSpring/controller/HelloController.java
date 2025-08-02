@@ -5,9 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+//클라이언트에 요청사항을 받아서 스프링컨테이너 에서 이를 처리
 @Controller
-public class HelloController {
+public class  HelloController {
     //웹 애플리케이션에서 /hello라고 들어오면 아래의 메서드를 호출한다고 한다
     @GetMapping("hello")
     public String hello(Model model) {
