@@ -1,6 +1,7 @@
 package hello.helloSpring.repository;
 
 import hello.helloSpring.domain.Member;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -18,32 +19,33 @@ import java.util.Optional;
 public class JdbcTemplateMemberRepository implements Memberrepository {
     //스프링 빈에 올라가져 있는데 생성자가 하나라면, @autowired 생략이 가능하다
     private final JdbcTemplate jdbcTemplate;
-    public JdbcTemplateMemberRepository(DataSource dataSource){
-        this.jdbcTemplate =new JdbcTemplate(dataSource);
+
+    @Autowired  //생성자가 하나라면 bean 에 등록되있으면 @Autowired생략가능
+    public JdbcTemplateMemberRepository(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
     public Member save(Member member) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("member").usingGeneratedKeyColumns("id");
-
-        Map<String ,Object> parameters = new HashMap<>();
+        Map<String, Object> parameters = new HashMap<>();
         parameters.put("name", member.getName());
-
-        Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
+        Number key = jdbcInsert.executeAndReturnKey(new
+                MapSqlParameterSource(parameters));
         member.setId(key.longValue());
         return member;
     }
 
     @Override
     public Optional<Member> findById(Long id) {
-        List<Member> result = jdbcTemplate.query("select * from member where id = ?",memberRowMapper(),id);
+        List<Member> result = jdbcTemplate.query("select * from member where id = ?", memberRowMapper(), id);
         return result.stream().findAny();
     }
 
     @Override
     public Optional<Member> findByName(String name) {
-        List<Member> result = jdbcTemplate.query("select * from member where name = ?",memberRowMapper(),name);
+        List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(), name);
         return result.stream().findAny();
 
     }
@@ -52,9 +54,10 @@ public class JdbcTemplateMemberRepository implements Memberrepository {
     public List<Member> findAll() {
         return jdbcTemplate.query("select * from member", memberRowMapper());
     }
-    private RowMapper<Member> memberRowMapper(){
-        return (rs, rowNum) -> {  //진짜 뭔 개소린지 모르겠다 일단 받아쓰기 조지기
-            Member member =new Member();
+
+    private RowMapper<Member> memberRowMapper() {
+        return (rs, rowNum) -> {
+            Member member = new Member();
             member.setId(rs.getLong("id"));
             member.setName(rs.getString("name"));
             return member;

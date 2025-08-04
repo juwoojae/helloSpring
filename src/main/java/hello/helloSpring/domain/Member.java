@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Member {
-    //Query 에 id를 넣는것이 아니고, DB가 id를 자동으로 생성해 주는것을 IDENTITY전략이라고 한다
+    //Query 에 id를 넣는것이 아니고, DB가 id를 자동으로 생성해 주는것을 IdENTITY전략이라고 한다
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;

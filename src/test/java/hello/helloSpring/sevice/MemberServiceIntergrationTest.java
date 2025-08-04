@@ -1,3 +1,4 @@
+
 package hello.helloSpring.sevice;
 import hello.helloSpring.domain.Member;
 import hello.helloSpring.repository.Memberrepository;
@@ -9,8 +10,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
-@Transactional
+@Transactional // 테스트가 끝나면 롤백을 해준다고 한다
 class MemberServiceIntegrationTest {
+
     @Autowired MemberService memberService;
     @Autowired Memberrepository memberRepository;
 
@@ -34,8 +36,7 @@ class MemberServiceIntegrationTest {
         member2.setName("spring");
         //When
         memberService.join(member1);
-        IllegalStateException e = assertThrows(IllegalStateException.class,
-                () -> memberService.join(member2));//예외가 발생해야 한다.
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));//예외가 발생해야 한다.
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
     }
 }

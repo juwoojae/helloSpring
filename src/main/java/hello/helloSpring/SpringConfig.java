@@ -16,12 +16,12 @@ public class SpringConfig {
 
     private EntityManager em;
 
-    @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
-    }
-    //    private DataSource dataSource;
-//
+   @Autowired
+   public SpringConfig(EntityManager em) {
+       this.em = em;
+   }
+    //private final DataSource dataSource;
+
 //    @Autowired
 //    public SpringConfig(DataSource dataSource){
 //        this.dataSource =dataSource;
@@ -33,7 +33,7 @@ public class SpringConfig {
     @Bean
     public Memberrepository memberrepository(){
         // return new MemoryMemberRepository();
-        // return new JdbcTemplateMemberRepository(dataSource);
+         //return new JdbcTemplateMemberRepository(dataSource);
         return new JpaMemberRepository(em);
     }
 }

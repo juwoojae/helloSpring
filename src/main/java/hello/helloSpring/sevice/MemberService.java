@@ -19,7 +19,7 @@ public class MemberService {
     /*
      * 회원 서비스 개발
      * */
-    private void validateDublicateMember(Member member) {
+    private void validateDuplicateMember(Member member) {
         memberrepository.findByName(member.getName())
                 .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
@@ -29,7 +29,7 @@ public class MemberService {
     // 멤버 회원가입 기능, 메서드가 추가된 멤버의 id를 리턴한다
     public Long join(Member member) {
         //같은 이름이 있는 중복회원 X
-        validateDublicateMember(member);
+        validateDuplicateMember(member);
         //Optional<Member> 에 내장되어있는 메서드이다
         memberrepository.save(member);
         return member.getId();
