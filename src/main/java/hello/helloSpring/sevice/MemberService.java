@@ -4,10 +4,12 @@ package hello.helloSpring.sevice;
 import hello.helloSpring.domain.Member;
 import hello.helloSpring.repository.Memberrepository;
 import hello.helloSpring.repository.MemoryMemberRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional; //비즈니스 로직을 만들고
+@Transactional
 public class MemberService {
     private final Memberrepository memberrepository ;
 
