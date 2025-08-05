@@ -29,15 +29,15 @@ public class MemberService {
     // 멤버 회원가입 기능, 메서드가 추가된 멤버의 id를 리턴한다
     public Long join(Member member) {
         //같은 이름이 있는 중복회원 X
-        validateDuplicateMember(member);
-        //Optional<Member> 에 내장되어있는 메서드이다
-        memberrepository.save(member);
-        return member.getId();
+            validateDuplicateMember(member);
+            //Optional<Member> 에 내장되어있는 메서드이다
+            memberrepository.save(member);
+            return member.getId();
     }
 
     // 모든 회원 리턴
     public List<Member> findMembers() {
-        return memberrepository.findAll();
+            return memberrepository.findAll();
     }
 
     //회원의 유무 확인기능
